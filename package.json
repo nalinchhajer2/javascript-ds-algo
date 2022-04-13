@@ -1,0 +1,40 @@
+{
+  "name": "javascript-ds-algo",
+  "version": "1.0.0",
+  "description": "Javascript Datastructure and algorithm",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nalinchhajer2/try_git.git"
+  },
+  "keywords": [
+    "javascript",
+    "ds",
+    "algo"
+  ],
+  "author": "Nalin Chhajer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nalinchhajer2/try_git/issues"
+  },
+  "homepage": "https://github.com/nalinchhajer2/try_git#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.3",
+    "jest": "^27.5.1",
+    "lodash": "^4.17.21",
+    "prettier": "^2.5.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  }
+}
