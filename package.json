@@ -38,6 +38,7 @@
     }
   },
   "dependencies": {
-    "csv-to-js-parser": "^2.3.4"
+    "csv-to-js-parser": "^2.3.4",
+    "immer": "^9.0.15"
   }
 }

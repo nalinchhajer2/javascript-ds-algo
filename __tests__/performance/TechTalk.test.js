@@ -10,6 +10,7 @@ import {
     treeTraversalLTR,
     treeTraversalTLR,
 } from '../../ds/Tree';
+import produce from "immer"
 
 /**
  * Javascript Data structure and Algorithm :-
@@ -26,6 +27,71 @@ import {
 describe('Tech talk', () => {
 
     const testSize = 100000;
+    describe('Modify some items in array and return a new array instance', () => {
+
+        const testArray = []
+        for (let i = 0; i < testSize; i++) {
+            testArray.push({id: i , even: (i & 1) === 0})
+        }
+
+        // 240 ms
+        test('method 1', () => {
+            const newArray = testArray.map((item) => {
+                return {
+                    ...item,
+                    even: true
+                }
+            })
+            expect(newArray === testArray).toEqual(false)
+            expect(newArray[1].even).toEqual(true)
+        })
+
+        // 108 ms
+        test('method 2', () => {
+            const newArray = testArray.map((item) => {
+                if (item.even === false) {
+                    return {
+                        ...item,
+                        even: true
+                    }
+                }
+                return item
+            })
+            expect(newArray === testArray).toEqual(false)
+            expect(newArray[1].even).toEqual(true)
+        })
+
+        // 493 ms
+        test('method 3', () => {
+            const newArray = produce(testArray, draftState => {
+                for (let i=1; i<testSize; i+=2) {
+                    draftState[i].even = true
+                }
+            })
+
+            expect(newArray === testArray).toEqual(false)
+            expect(newArray[1].even).toEqual(true)
+        })
+
+        // 106 ms
+        test('method 4', () => {
+            const newArray = []
+            for (let i = 0; i < testSize; i++) {
+                if (testArray[i].even === true) {
+                    newArray.push(testArray[i])
+                } else {
+                    newArray.push({...testArray[i], even: true})
+                }
+            }
+
+            expect(newArray === testArray).toEqual(false)
+            expect(newArray[1].even).toEqual(true)
+        })
+
+    })
+
+
+
     describe('Remove all duplicate', () => {
         // https://bobbyhadz.com/blog/javascript-remove-duplicates-from-array-of-objects#:~:text=To%20remove%20all%20duplicate%20objects%20from%20an%20array%3A&text=Call%20the%20filter()%20method,object%20to%20the%20results%20array.
         const maxValue = 50000;
@@ -69,6 +135,7 @@ describe('Tech talk', () => {
             expect(unique.length).toEqual(maxValue);
         })
 
+        // 234 ms
         test('method 3', () => {
             // Method 3: 5000 (6 ms) and 500 (6 ms)
             const uniqueIds = {};

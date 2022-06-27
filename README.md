@@ -7,6 +7,12 @@ unit testing.
 1. In the root of repository, run following command from terminal `npm install` or `yarn`
 2. run `npm run test` or `yarn run test` to run all test cases
 
+## Performance
+Improve your app performance by ensuring that we completely run our logic in less than 60 ms. Below are some use cases that will help.
+
+
+
+
 ## DataStructure
 
 1. Graph - Adjacency List and Adjacency Matrix
